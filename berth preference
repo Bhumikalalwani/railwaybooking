@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Class and Berth Preference</title>
+    <style>
+        html, body {
+            height: 100%
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://live.staticflickr.com/7254/6867419082_48400b8e1f_b.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+    background-color: rgba(209, 195, 195, 0.646);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 40%;
+    border-radius: 20px;
+    text-align: center;
+    margin-right: 15%;
+    margin-left: 0;
+}
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .class-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .class-box {
+            border: 4px solid #747171;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .class-box.selected {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        select, button {
+            margin: 10px;
+            padding: 10px;
+            /* border: 1px solid #ccc;
+            border-radius: 5px; */
+            border: 4px solid #747171;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #berthPreference {
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        #changePreference {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #changePreference label {
+            margin-right: 10px;
+        }
+
+        #changePreference input[type="radio"] {
+            margin-right: 5px;
+        }
+        #logo {
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    width: 100px; 
+    height: auto; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Class and Berth Preference</h1>
+        <br>
+        <h2>Select class of your choice</h2>
+        <div class="class-container">
+            <div class="class-box selected" id="sleeper">Sleeper</div>
+            <div class="class-box" id="ac1">AC-1</div>
+            <div class="class-box" id="ac2">AC-2</div>
+            <div class="class-box" id="ac3">AC-3</div>
+        </div>
+
+        <label for="berthPreference">Berth Preference:</label>
+        <select id="berthPreference">
+            <option value="Lower" selected>Lower Berth</option>
+        </select>
+
+        <div id="changePreference">
+            <label>Change Berth Preference?</label>
+            <input type="radio" id="yes" name="changePreference" value="yes">
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" name="changePreference" value="no" checked>
+            <label for="no">No</label>
+        </div>
+
+        <button id="submit">Submit</button>
+        <img src="C:\Users\91704\OneDrive\Desktop\html\dklogo.png" alt="Logo" id="logo">
+    </div>
+
+    <script>
+        const classBoxes = document.querySelectorAll('.class-box');
+        const changePreferenceYes = document.getElementById("yes");
+        const berthPreferenceSelect = document.getElementById("berthPreference");
+
+        classBoxes.forEach(box => {
+            box.addEventListener('click', () => {
+                classBoxes.forEach(b => b.classList.remove('selected'));
+                box.classList.add('selected');
+            });
+        });
+
+        document.getElementById("submit").addEventListener("click", function() {
+            const selectedTrainClass = document.querySelector('.class-box.selected').textContent;
+            const selectedBerthPreference = "Lower Berth"; 
+            const changePreference = changePreferenceYes.checked ? "Yes" : "No";
+
+            alert(Selected Train Class: ${selectedTrainClass}\nBerth Preference: ${selectedBerthPreference}\nChange Preference: ${changePreference});
+        });
+    </script>
+</body>
+</html>
